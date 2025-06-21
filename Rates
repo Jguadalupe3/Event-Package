@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Photography Packages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #D4AF37, #FFD700, #B8860B);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .package-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #D4AF37, #FFD700);
+        }
+
+        .package-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #D4AF37;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .package-duration {
+            background: rgba(212, 175, 55, 0.2);
+            color: #D4AF37;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #D4AF37;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .delivery-section {
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .delivery-title {
+            color: #D4AF37;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .delivery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .delivery-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .delivery-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #D4AF37;
+            display: block;
+        }
+
+        .delivery-label {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-top: 5px;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 50px;
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #D4AF37;
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 200px;
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #D4AF37, #FFD700);
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .delivery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Event Photography</h1>
+            <p>Capturing life's special moments with professional quality and creative vision. From intimate gatherings to grand celebrations.</p>
+        </div>
+
+        <div class="packages-grid">
+            <!-- Basic Package -->
+            <div class="package-card">
+                <div class="package-title">Essential</div>
+                <div class="package-price">$350</div>
+                <div class="package-duration">2-3 Hours Coverage</div>
+                
+                <ul class="feature-list">
+                    <li>Pre-event consultation</li>
+                    <li>Professional coverage of key moments</li>
+                    <li>Candid and posed group shots</li>
+                    <li>Basic photo editing</li>
+                    <li>USB drive delivery</li>
+                    <li>48-hour preview highlights</li>
+                </ul>
+
+                <div class="delivery-section">
+                    <div class="delivery-title">
+                        📸 Image Delivery
+                    </div>
+                    <div class="delivery-grid">
+                        <div class="delivery-item">
+                            <span class="delivery-number">75+</span>
+                            <div class="delivery-label">Edited Images</div>
+                        </div>
+                        <div class="delivery-item">
+                            <span class="delivery-number">50+</span>
+                            <div class="delivery-label">Raw Images</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Standard Package -->
+            <div class="package-card">
+                <div class="package-title">Professional</div>
+                <div class="package-price">$575</div>
+                <div class="package-duration">4-5 Hours Coverage</div>
+                
+                <ul class="feature-list">
+                    <li>Pre-event consultation & planning</li>
+                    <li>Full event documentation</li>
+                    <li>Candids, posed shots & details</li>
+                    <li>Advanced photo editing</li>
+                    <li>USB drive + cloud backup</li>
+                    <li>Social media ready formats</li>
+                    <li>24-hour preview highlights</li>
+                </ul>
+
+                <div class="delivery-section">
+                    <div class="delivery-title">
+                        📸 Image Delivery
+                    </div>
+                    <div class="delivery-grid">
+                        <div class="delivery-item">
+                            <span class="delivery-number">150+</span>
+                            <div class="delivery-label">Edited Images</div>
+                        </div>
+                        <div class="delivery-item">
+                            <span class="delivery-number">100+</span>
+                            <div class="delivery-label">Raw Images</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Package -->
+            <div class="package-card">
+                <div class="premium-badge">Most Popular</div>
+                <div class="package-title">Premium</div>
+                <div class="package-price">$800</div>
+                <div class="package-duration">6-8 Hours Coverage</div>
+                
+                <ul class="feature-list">
+                    <li>Comprehensive pre-event planning</li>
+                    <li>Full day event coverage</li>
+                    <li>Multiple shooting styles</li>
+                    <li>Professional editing & retouching</li>
+                    <li>Multiple delivery formats</li>
+                    <li>Same-day preview highlights</li>
+                    <li>Print release included</li>
+                    <li>Backup photographer on standby</li>
+                </ul>
+
+                <div class="delivery-section">
+                    <div class="delivery-title">
+                        📸 Image Delivery
+                    </div>
+                    <div class="delivery-grid">
+                        <div class="delivery-item">
+                            <span class="delivery-number">250+</span>
+                            <div class="delivery-label">Edited Images</div>
+                        </div>
+                        <div class="delivery-item">
+                            <span class="delivery-number">150+</span>
+                            <div class="delivery-label">Raw Images</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Capture Your Event?</h2>
+            <p class="cta-text">
+                From weddings and birthday parties to DJ nights and corporate events, 
+                I bring professional quality and creative vision to every moment that matters.
+            </p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3 style="color: #D4AF37; margin-bottom: 10px;">Jamie Guadalupe</h3>
+                    <p><strong>Phone:</strong> (551) 666-8442</p>
+                    <p><strong>Email:</strong> guadalupe.jamiej@gmail.com</p>
+                    <p><strong>Instagram:</strong> @jguadalupe3</p>
+                </div>
+                <div class="contact-item">
+                    <h3 style="color: #D4AF37; margin-bottom: 10px;">Professional Equipment</h3>
+                    <p>Sony A7 II • 24-70mm f/2.8 GM • Professional Flash • Backup Equipment</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
